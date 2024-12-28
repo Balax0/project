@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ job.title }}</title>
+</head>
+<body>
+    <h1>{{ job.title }}</h1>
+    <p>{{ job.description }}</p>
+    <p>Category: {{ job.category.name }}</p>
+    <p>Location: {{ job.location }}</p>
+    <p>Pay Rate: ${{ job.pay_rate }}</p>
+    <a href="{% url 'apply_job' job.id %}">Apply Now</a>
+</body>
+</html>
+<script src="{% static 'jobs/js/main.js' %}"></script>
+
+<div id="map" style="height: 400px;"></div>
+<script>
+    function initMap() {
+        const location = { lat: -34.397, lng: 150.644 }; // Example coordinates
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 8,
+            center: location,
+        });
+        new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
